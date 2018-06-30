@@ -57,7 +57,7 @@ EOF
 
 ln -s "$availableDIR$confFile" "$enabledDIR$confFile"
 
-mv "$(availableDIR)default" "$(availableDIR)default-old"
+mv "($availableDIR)default" "($availableDIR)default-old"
 
 # start nginx
 nginx -t
