@@ -63,6 +63,6 @@ mv $availableDIR"default" $availableDIR"default-old"
 nginx -t
 systemctl restart nginx
 
-# source certbot.sh
+source certbot.sh
 
 exit 0
