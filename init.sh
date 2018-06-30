@@ -44,7 +44,7 @@ server {
        listen 80 default_server;
        listen [::]:80 default_server ipv6only=on;
 
-       server_name $domain www.domain;
+       server_name $domain www.$domain;
 
        root /var/www/$domain;
        index index.html;
