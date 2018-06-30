@@ -34,8 +34,10 @@ cp index.html $wwwDIR
 availableDIR="/etc/nginx/sites-available/"
 enabledDIR="/etc/nginx/sites-enabled/"
 confFile="$domain.conf"
+echo -e "$confFile"
 if [ -e "$availableDIR$conffile" ]; then
-    rm -f "$availableDIR$conffile"
+    rm -f "$availableDIR$confFile"
+    rm -f "$enabledDIR$confFile"
 fi
 cat <<EOF >"$availableDIR$confFile"
 server {
