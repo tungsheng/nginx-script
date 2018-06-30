@@ -1,6 +1,6 @@
 sudo apt-get update
-sudo apt-get install certbot -y python-certbot-nginx
-sudo certbot --nginx
+sudo apt-get install certbot -y python-certbot-nginx -t stretch-backports
+sudo certbot --authenticator webroot --installer nginx
 
 # You can check renewal works using:
 # sudo certbot renew --dry-run
