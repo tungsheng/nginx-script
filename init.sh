@@ -27,7 +27,7 @@ mkdir -p $dir
 wwwDIR="/var/www/$domain"
 if [ -e "/var/www/$domain/index.html" ]; then
     rm -f "/var/www/$domain/index.html"
-else
+fi
 cp index.html $wwwDIR
 
 # create conf file
@@ -36,7 +36,7 @@ enabledDIR="/etc/nginx/sites-enabled/"
 confFile="$domain.conf"
 if [ -e "$availableDIR$conffile" ]; then
     rm -f "$availableDIR$conffile"
-else
+fi
 cat <<EOF >"$availableDIR$confFile"
 server {
        listen 80 default_server;
@@ -58,3 +58,5 @@ ln -s "$availableDIR$confFile" "$enabledDIR$confFile"
 # start nginx
 nginx -t
 systemctl restart nginx
+
+exit 0
