@@ -61,4 +61,6 @@ ln -s "$availableDIR$confFile" "$enabledDIR$confFile"
 nginx -t
 systemctl restart nginx
 
+source certbot.sh
+
 exit 0
