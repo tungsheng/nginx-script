@@ -1,7 +1,5 @@
 sudo apt-get update
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt-get update
-sudo apt-get install -y python-certbot-nginx
+sudo apt-get install certbot -y python-certbot-nginx
 sudo certbot --nginx
 
 # You can check renewal works using:
