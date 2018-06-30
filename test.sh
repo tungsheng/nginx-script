@@ -17,4 +17,6 @@ foo() {
 
 }
 
-foo
+# foo
+
+echo "$(dirname $(pwd))/c.sh"

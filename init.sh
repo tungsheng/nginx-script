@@ -57,10 +57,12 @@ EOF
 
 ln -s "$availableDIR$confFile" "$enabledDIR$confFile"
 
+mv "$(availableDIR)default" "$(availableDIR)default-old"
+
 # start nginx
 nginx -t
 systemctl restart nginx
 
-source certbot.sh
+# source certbot.sh
 
 exit 0
