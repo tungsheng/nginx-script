@@ -10,7 +10,15 @@ function getDomain() {
     echo -e "\n\n"
 }
 
+# update source
+curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
+echo "deb https://nginx.org/packages/mainline/debian/ $(lsb_release -cs) nginx\n" | tee -a /etc/apt/sources.list.d/nginx.list
+echo "deb-src https://nginx.org/packages/mainline/debian/ $(lsb_release -cs) nginx" | tee -a /etc/apt/sources.list.d/nginx.list
+
+
 # install nginx
+apt-get remove nginx-common
+apt-get update
 apt-get install -y nginx
 
 # get domain name
