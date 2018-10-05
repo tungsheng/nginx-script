@@ -74,18 +74,15 @@ if [ -e "$availableDIR$conffile" ]; then
     rm -f "$enabledDIR$confFile"
 fi
 cat <<EOF >"$availableDIR$confFile"
-server {
-       listen 80 default_server;
-       listen [::]:80 default_server ipv6only=on;
+http {
+  server {
+    listen 80 default_server;
 
-       server_name $domain www.$domain;
+    server_name $domain www.$domain;
 
-       root /var/www/$domain;
-       index index.html;
-
-       location / {
-               try_files \$uri \$uri/ =404;
-       }
+    root /var/www/$domain;
+    index index.html;
+  }
 }
 EOF
 
