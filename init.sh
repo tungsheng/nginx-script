@@ -48,52 +48,52 @@ echo -ne "Starting Nginx...\n"
 systemctl start nginx
 
 # get domain name
-getDomain
-dir="/var/www/$domain"
-if [ -d "$dir" ]; then
-  # dir exists.
-  rm -rf $dir
-fi
+# getDomain
+# dir="/var/www/$domain"
+# if [ -d "$dir" ]; then
+#   # dir exists.
+#   rm -rf $dir
+# fi
 
-mkdir -p $dir
+# mkdir -p $dir
 
 # init www
-wwwDIR="/var/www/$domain"
-if [ -e "/var/www/$domain/index.html" ]; then
-    rm -f "/var/www/$domain/index.html"
-fi
-cp index.html $wwwDIR
+# wwwDIR="/var/www/$domain"
+# if [ -e "/var/www/$domain/index.html" ]; then
+#     rm -f "/var/www/$domain/index.html"
+# fi
+# cp index.html $wwwDIR
 
 # create conf file
-availableDIR="/etc/nginx/sites-available/"
-enabledDIR="/etc/nginx/sites-enabled/"
-confFile="$domain.conf"
-echo -e "$confFile"
-if [ -e "$availableDIR$conffile" ]; then
-    rm -f "$availableDIR$confFile"
-    rm -f "$enabledDIR$confFile"
-fi
-cat <<EOF >"$availableDIR$confFile"
-http {
-  server {
-    listen 80 default_server;
+# availableDIR="/etc/nginx/sites-available/"
+# enabledDIR="/etc/nginx/sites-enabled/"
+# confFile="$domain.conf"
+# echo -e "$confFile"
+# if [ -e "$availableDIR$conffile" ]; then
+#     rm -f "$availableDIR$confFile"
+#     rm -f "$enabledDIR$confFile"
+# fi
+# cat <<EOF >"$availableDIR$confFile"
+# http {
+#   server {
+#     listen 80 default_server;
 
-    server_name $domain www.$domain;
+#     server_name $domain www.$domain;
 
-    root /var/www/$domain;
-    index index.html;
-  }
-}
-EOF
+#     root /var/www/$domain;
+#     index index.html;
+#   }
+# }
+# EOF
 
-ln -s "$availableDIR$confFile" "$enabledDIR$confFile"
+# ln -s "$availableDIR$confFile" "$enabledDIR$confFile"
 
-mv $availableDIR"default" $availableDIR"default-old"
+# mv $availableDIR"default" $availableDIR"default-old"
 
 # start nginx
-nginx -t
-systemctl restart nginx
+# nginx -t
+# systemctl restart nginx
 
-source certbot.sh
+# source certbot.sh
 
 exit 0
