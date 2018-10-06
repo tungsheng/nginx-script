@@ -10,15 +10,26 @@ function getDomain() {
     echo -e "\n\n"
 }
 
-# update source
-curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
-echo "deb https://nginx.org/packages/mainline/debian/ $(lsb_release -cs) nginx\n" | tee -a /etc/apt/sources.list.d/nginx.list
-echo "deb-src https://nginx.org/packages/mainline/debian/ $(lsb_release -cs) nginx" | tee -a /etc/apt/sources.list.d/nginx.list
+# variables
+version=1.15.5
 
-# install nginx
-apt-get remove nginx-common
+# install dependancies
 apt-get update
-apt-get install -y nginx
+apt-get install -y \
+  build-essential \
+  libpcre3 \
+  libpcre3-dev \
+  zlib1g \
+  zlib1g-dev \
+  libssl-dev
+
+# download source
+wget http://nginx.org/download/nginx-${version}.tar.gz
+tar -zxvf nginx-${version}.tar.gz
+cd nginx-${version}/
+
+# compile source
+./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid
 
 # add Nginx service
 echo -ne "Adding Nginx service...\n"
