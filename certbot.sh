@@ -1,4 +1,12 @@
+# Install dependencies
+sudo add-apt-repository "deb http://ftp.debian.org/debian stretch-backports main"
+sudo apt update
+apt-get -t stretch-backports install "package"
+
+# Install certbot
 apt-get install -y python-certbot-nginx -t stretch-backports
+
+# Setup
 certbot --authenticator webroot --installer nginx
 
 # You can check renewal works using:
