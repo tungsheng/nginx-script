@@ -29,7 +29,16 @@ tar -zxvf nginx-${version}.tar.gz
 cd nginx-${version}/
 
 # compile source
-./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid
+./configure \
+  --sbin-path=/usr/bin/nginx \
+  --conf-path=/etc/nginx/nginx.conf \
+  --error-log-path=/var/log/nginx/error.log \
+  --http-log-path=/var/log/nginx/access.log \
+  --with-pcre --pid-path=/var/run/nginx.pid \
+  --with-http_ssl_module
+
+# install source
+make install
 
 # add Nginx service
 echo -ne "Adding Nginx service...\n"
