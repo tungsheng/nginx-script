@@ -30,6 +30,7 @@ cd nginx-${version}/
 
 # compile source
 ./configure \
+  --without-http_autoindex_module \
   --sbin-path=/usr/bin/nginx \
   --conf-path=/etc/nginx/nginx.conf \
   --error-log-path=/var/log/nginx/error.log \
@@ -39,6 +40,7 @@ cd nginx-${version}/
   --with-http_v2_module
 
 # install source
+make
 make install
 
 # add Nginx service
