@@ -21,8 +21,7 @@ apt-get install -y \
   libpcre3-dev \
   zlib1g \
   zlib1g-dev \
-  libssl-dev \
-  libgd-dev
+  libssl-dev
 
 # download source
 wget http://nginx.org/download/nginx-${version}.tar.gz
@@ -37,7 +36,7 @@ cd nginx-${version}/
   --http-log-path=/var/log/nginx/access.log \
   --with-pcre --pid-path=/var/run/nginx.pid \
   --with-http_ssl_module \
-  --with-http_image_filter_module=dynamic
+  --with-http_v2_module
 
 # install source
 make install
