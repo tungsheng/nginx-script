@@ -81,7 +81,7 @@ Type=forking
 PIDFile=/var/run/nginx.pid
 ExecStartPre=/usr/bin/nginx -t
 ExecStart=/usr/bin/nginx
-ExecReload=/usr/sbin/nginx -s reload
+ExecReload=/usr/bin/nginx -s reload
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
 
