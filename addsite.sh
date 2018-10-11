@@ -47,5 +47,5 @@ server {
 }
 EOF
 
-sudo ln -s "$availableDIR/$domain" "$enabledDIR/$domain"
+[ -f "$availableDIR/$domain" ] || sudo ln -s "$availableDIR/$domain" "$enabledDIR/$domain"
 
