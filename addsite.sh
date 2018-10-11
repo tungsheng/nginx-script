@@ -20,6 +20,10 @@ htmlDir="$wwwroot/html"
 sudo mkdir -p $htmlDir
 sudo cp $HOME/nginx-script/index.html $htmlDir
 
+# update owner
+sudo chown -R www-data:www-data $wwwroot
+sudo chmod -R 755 $wwwroot
+
 # setup server block 
 availableDIR="/etc/nginx/sites-available"
 [ -d "$availableDIR" ] || mkdir -p "$availableDIR"
