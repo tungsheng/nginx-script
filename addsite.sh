@@ -18,7 +18,7 @@ wwwroot="/var/www/$domain"
 
 htmlDir="$wwwroot/html"
 sudo mkdir -p $htmlDir
-sudo cp index.html $htmlDir
+sudo cp $HOME/nginx-script/index.html $htmlDir
 
 # setup server block 
 availableDIR="/etc/nginx/sites-available"
@@ -31,15 +31,14 @@ sudo touch $serverblock
 cat <<EOF >> "$availableDIR/$domain"
 server {
   listen 80;
-  listen [::]:80;
+
+  server_name $domain www.$domain;
 
   root $wwwroot/html;
   index index.html index.htm index.nginx-debian.html;
 
-  server_name $domain www.$domain;
-
   location / {
-    try_files $uri $uri/ =404;
+    try_files ${uri@Q} ${uri@Q}/ =404;
   }
 }
 EOF
