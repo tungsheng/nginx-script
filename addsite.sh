@@ -22,13 +22,13 @@ sudo cp $HOME/nginx-script/index.html $htmlDir
 
 # setup server block 
 availableDIR="/etc/nginx/sites-available"
+[[ ! -d "$availableDIR" ]] || mkdir -p "$availableDIR"
 enabledDIR="/etc/nginx/sites-enabled"
+[[ ! -d "$enabledDIR" ]] || mkdir -p "$enabledDIR"
 serverblock="$availableDIR/$domain"
+[[ ! -f "$serverblock" ]] || sudo touch $serverblock
 
-[[ -f "$serverblock" ]] || sudo rm -f "$serverblock"
-
-sudo touch $serverblock
-cat <<EOF >> "$availableDIR/$domain"
+cat <<EOF > "$availableDIR/$domain"
 server {
   listen 80;
 
@@ -46,7 +46,7 @@ EOF
 sudo ln -s "$availableDIR/$domain" "$enabledDIR/$domain"
 
 # reload nginx
-nginx -t
-systemctl reload nginx
+sudo nginx -t
+sudo systemctl reload nginx
 
 exit 0
