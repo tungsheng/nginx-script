@@ -49,4 +49,3 @@ EOF
 
 sudo ln -s "$availableDIR/$domain" "$enabledDIR/$domain"
 
-exit 0
