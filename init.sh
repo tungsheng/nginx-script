@@ -66,7 +66,7 @@ sudo ufw allow 'Nginx HTTP'
 sudo cp -f $HOME/nginx-script/nginx.example.conf /etc/nginx/nginx.conf
 
 # Add site
-sudo source $HOME/nginx-script/addsite.sh
+source $HOME/nginx-script/addsite.sh
 
 # Add Nginx service
 echo -ne "Adding Nginx service...\n"
