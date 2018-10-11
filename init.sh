@@ -34,6 +34,30 @@ make
 make install
 
 # Firewall allows nginx http
+nginxHTTP=/etc/ufw/applications.d/nginx-http
+nginxHTTPS=/etc/ufw/applications.d/nginx-https
+nginxFULL=/etc/ufw/applications.d/nginx-full
+touch nginxHTTP
+touch nginxHTTPS
+touch nginxFULL
+cat <<EOT >> $nginxHTTP
+[Nginx HTTP]
+title=Web Server (HTTP)
+description=for serving web
+ports=80/tcp
+EOT
+cat <<EOT >> $nginxHTTPS
+[Nginx HTTPS]
+title=Web Server (HTTPS)
+description=for serving web
+ports=443/tcp
+EOT
+cat <<EOT >> $nginxHTTPS
+[Nginx Full]
+title=Web Server (HTTP and HTTPS)
+description=for serving web
+ports=80,443/tcp
+EOT
 sudo ufw allow 'Nginx HTTP'
 
 # add Nginx service
