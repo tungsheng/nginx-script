@@ -22,11 +22,11 @@ sudo cp $HOME/nginx-script/index.html $htmlDir
 
 # setup server block 
 availableDIR="/etc/nginx/sites-available"
-[[ ! -d "$availableDIR" ]] || mkdir -p "$availableDIR"
+[ -d "$availableDIR" ] || mkdir -p "$availableDIR"
 enabledDIR="/etc/nginx/sites-enabled"
-[[ ! -d "$enabledDIR" ]] || mkdir -p "$enabledDIR"
+[ -d "$enabledDIR" ] || mkdir -p "$enabledDIR"
 serverblock="$availableDIR/$domain"
-[[ ! -f "$serverblock" ]] || sudo touch $serverblock
+[ ! -f "$serverblock" ] && sudo touch $serverblock
 
 cat <<EOF > "$availableDIR/$domain"
 server {
