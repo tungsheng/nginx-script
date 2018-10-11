@@ -24,7 +24,11 @@ cd nginx-${version}/
   --without-http_autoindex_module \
   --sbin-path=/usr/bin/nginx \
   --conf-path=/etc/nginx/nginx.conf \
-  --with-pcre --with-http_ssl_module \
+  --error-log-path=/var/log/nginx/error.log \
+  --http-log-path=/var/log/nginx/access.log \
+  --pid-path=/var/run/nginx.pid \
+  --with-pcre \
+  --with-http_ssl_module \
   --with-http_v2_module
 
 # Install source
