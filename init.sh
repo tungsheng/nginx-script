@@ -89,10 +89,13 @@ PrivateTmp=true
 WantedBy=multi-user.target
 EOT
 
+echo -ne "Check Nginx syntax...\n"
+nginx -t
+
 echo -ne "Enabling Nginx...\n"
-systemctl enable nginx
+sudo systemctl enable nginx
 
 echo -ne "Starting Nginx...\n"
-systemctl start nginx
+sudo systemctl start nginx
 
 exit 0

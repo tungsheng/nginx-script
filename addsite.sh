@@ -45,6 +45,3 @@ EOF
 
 [ -f "$availableDIR/$domain" ] || sudo ln -s "$availableDIR/$domain" "$enabledDIR/$domain"
 
-# Check nginx syntax
-nginx -t
-
