@@ -49,8 +49,4 @@ EOF
 
 sudo ln -s "$availableDIR/$domain" "$enabledDIR/$domain"
 
-# reload nginx
-sudo nginx -t
-sudo systemctl reload nginx
-
 exit 0
