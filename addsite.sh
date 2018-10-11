@@ -40,10 +40,6 @@ server {
 
   root $wwwroot/html;
   index index.html index.htm index.nginx-debian.html;
-
-  location / {
-    try_files ${uri@Q} ${uri@Q}/ =404;
-  }
 }
 EOF
 
