@@ -4,8 +4,8 @@
 version=1.15.5
 
 # Install dependancies
-sudo apt-get update
-sudo apt-get install -y \
+sudo apt update
+sudo apt install -y \
   build-essential \
   libpcre3 \
   libpcre3-dev \
@@ -70,8 +70,9 @@ source $HOME/nginx-script/addsite.sh
 
 # Add Nginx service
 echo -ne "Adding Nginx service...\n"
-touch /lib/systemd/system/nginx.service
-cat <<EOT > /lib/systemd/system/nginx.service
+nginxService=/lib/systemd/system/nginx.service
+[ -f $nginxService ] || touch $nginxService
+cat <<EOT > $nginxService
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
 After=syslog.target network.target remote-fs.target nss-lookup.target
