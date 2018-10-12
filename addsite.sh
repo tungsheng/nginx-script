@@ -1,19 +1,19 @@
 #!/bin/bash
 
 # functions
-get_domain() {
+get_host() {
   echo -e "\n\n"
-  read -e -p "Enter a domain (e.g. domain.com) " -r domain
-  if [[ "${#domain}" -lt 1 ]]; then
-    echo " >> Please enter a valid domain!"
-    get_domain
+  read -e -p "Enter a host (e.g. web.host.com) " -r host
+  if [[ "${#host}" -lt 1 ]]; then
+    echo " >> Please enter a valid host!"
+    get_host
   fi
   echo -e "\n\n"
 }
 
-# get domain name and init
-get_domain
-wwwroot="/var/www/$domain"
+# get host name and init
+get_host
+wwwroot="/var/www/$host"
 [[ -d "$wwwroot" ]] || sudo rm -rf $wwwroot
 
 htmlDir="$wwwroot/html"
@@ -26,22 +26,23 @@ sudo chmod -R 755 $wwwroot
 
 # setup server block 
 availableDIR="/etc/nginx/sites-available"
-[ -d "$availableDIR" ] || mkdir -p "$availableDIR"
 enabledDIR="/etc/nginx/sites-enabled"
-[ -d "$enabledDIR" ] || mkdir -p "$enabledDIR"
-serverblock="$availableDIR/$domain"
-[ ! -f "$serverblock" ] && sudo touch $serverblock
+availableBlock="$availableDIR/$host"
+enabledBlock="$enabledDIR/$host"
+[ -d "$availableDIR" ] || sudo mkdir -p "$availableDIR"
+[ -d "$enabledDIR" ] || sudo mkdir -p "$enabledDIR"
+[ -f "$availableBlock" ] || sudo touch $availableBlock
+[ -L "$enabledBlock" ] || sudo ln -s $availableBlock $enabledBlock
 
-cat <<EOF > "$availableDIR/$domain"
+cat <<EOT > $availableBlock
 server {
   listen 80;
+  listen [::]:80;
 
-  server_name $domain www.$domain;
+  server_name $host;
 
   root $wwwroot/html;
   index index.html index.htm index.nginx-debian.html;
 }
-EOF
-
-[ -f "$availableDIR/$domain" ] || sudo ln -s "$availableDIR/$domain" "$enabledDIR/$domain"
+EOT
 
