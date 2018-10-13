@@ -28,6 +28,7 @@ sudo ufw allow 'Nginx Full'
 sudo ufw delete allow 'Nginx HTTP'
 
 # Setup
+get_domain
 sudo certbot -d $domain
 
 # You can check renewal works using:
