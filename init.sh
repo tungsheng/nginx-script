@@ -54,7 +54,7 @@ title=Web Server (HTTPS)
 description=for serving web
 ports=443/tcp
 EOT
-sudo cat <<EOT > $nginxHTTPS
+sudo cat <<EOT > $nginxFULL
 [Nginx Full]
 title=Web Server (HTTP and HTTPS)
 description=for serving web
