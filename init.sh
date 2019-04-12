@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=1.15.5
+version=1.15.11
 
 # Install dependancies
 sudo apt update
